@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+.Selector{
+    background-color: #282c34;
+    min-height: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18;
+    color: white;
+}
+
+.Remove-Button{
+    color: red;
+}
+
+.Add-Button{
+    color: green;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

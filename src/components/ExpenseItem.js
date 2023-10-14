@@ -1,9 +1,11 @@
 import React, {useContext} from 'react';
 import {TiDelete} from 'react-icons/ti';
+import {IoAddCircleSharp, IoRemoveCircleSharp} from 'react-icons/io5';
 import {AppContext} from '../context/AppContext';
+import '../App.css';
 
 const ExpenseItem = (props) =>{
-    const {dispatch} = useContext(AppContext);
+    const {dispatch, currency} = useContext(AppContext);
 
     const handleDeleteExpense = () =>{
         dispatch ({
@@ -24,11 +26,24 @@ const ExpenseItem = (props) =>{
         });
     }
 
+    const decreaseAllocation = (name) =>{
+        const expense ={
+            name: name,
+            cost: 10,
+        };
+
+        dispatch ({
+            type: 'RED_EXPENSE',
+            payload: expense
+        });
+    }
+
     return(
         <tr>
             <td>{props.name}</td>
-            <td>£{props.cost}</td>
-            <td><button onClick={event=> increaseAllocation(props.name)}>+</button></td>
+            <td>{currency}{props.cost}</td>
+            <td><IoAddCircleSharp className="Add-Button" size="2em" onClick={event=> increaseAllocation(props.name)}></IoAddCircleSharp></td>
+            <td><IoRemoveCircleSharp className="Remove-Button" size="2em" onClick={event=> decreaseAllocation(props.name)}></IoRemoveCircleSharp></td>
             <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>            
         </tr>
     );
